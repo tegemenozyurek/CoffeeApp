@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,43 +8,52 @@ import { Platform, StyleSheet } from 'react-native';
 import ClassicsScreen from './screens/Classics';
 import CreateScreen from './screens/Create';
 import CartScreen from './screens/Cart';
+import DessertsScreen from './screens/Desserts';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Classics"
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === 'Classics') {
-                iconName = focused ? 'cafe' : 'cafe-outline';
-              } else if (route.name === 'Create') {
-                iconName = focused ? 'sparkles' : 'sparkles-outline';
-              } else if (route.name === 'Cart') {
-                iconName = focused ? 'cart' : 'cart-outline';
-              }
-
-              return <Ionicons name={iconName} size={24} color={color} />;
-            },
-            tabBarActiveTintColor: '#6366F1',
-            tabBarInactiveTintColor: '#6B7280',
-            tabBarStyle: styles.tabBar,
-            tabBarItemStyle: styles.tabBarItem,
-            tabBarLabelStyle: styles.tabBarLabel,
-            headerShown: false
-          })}
-        >
-          <Tab.Screen name="Classics" component={ClassicsScreen} />
-          <Tab.Screen name="Create" component={CreateScreen} />
-          <Tab.Screen name="Cart" component={CartScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen 
+          name="Classics" 
+          component={ClassicsScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="cafe-outline" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen 
+          name="Create" 
+          component={CreateScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="sparkles-outline" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen 
+          name="Desserts" 
+          component={DessertsScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="ice-cream-outline" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen 
+          name="Cart" 
+          component={CartScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="cart-outline" size={size} color={color} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
