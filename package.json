@@ -4,6 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
+    "clean": "npx expo start --clear",
+    "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider expo start --clear",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -18,14 +21,28 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.9",
+    "react-native-gesture-handler": "~2.20.2",
+    "react-native-haptic-feedback": "^2.3.3",
+    "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-vector-icons": "^10.2.0",
-    "react-native-web": "~0.19.13",
-    "tailwindcss-react-native": "^1.7.10"
+    "react-native-web": "~0.19.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@react-native-community/cli": "latest",
+    "autoprefixer": "^10.4.21",
+    "babel-preset-expo": "^12.0.11",
+    "cross-env": "^7.0.3",
+    "nativewind": "^4.1.23",
+    "tailwindcss": "^3.3.2"
   },
-  "private": true
+  "private": true,
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
+  }
 }
